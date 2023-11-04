@@ -1,0 +1,11 @@
+node_modules/
+build/
+dist/
+.next/
+coverage/
+*.min.js
+public/
+temp/
+tmp/
+*.d.ts
+scripts/

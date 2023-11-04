@@ -1,3 +1,138 @@
 {
-  "extends": "next/core-web-vitals"
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "import",
+    "react-refresh",
+    "fp",
+    "fsecond",
+    "prefer-arrow"
+  ],
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:sonar/recommended",
+    "plugin:lodash/recommended"
+  ],
+  "rules": {
+    "semi": ["error", "never"],
+    "no-console": "warn",
+    "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
+    "func-style": ["error", "expression", { "allowArrowFunctions": true }],
+    "prefer-destructuring": "warn",
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true,
+        "allowTaggedTemplates": true
+      }
+    ],
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "ExportNamedDeclaration[declaration]",
+        "message": "Do not use inline exports. Declare before exporting."
+      }
+    ],
+    "padding-line-between-statements": [
+      "warn",
+      { "blankLine": "always", "prev": "*", "next": "export" },
+      { "blankLine": "always", "prev": "*", "next": "const" },
+      { "blankLine": "always", "prev": "const", "next": "*" },
+      { "blankLine": "always", "prev": "*", "next": "let" },
+      { "blankLine": "always", "prev": "let", "next": "*" },
+      { "blankLine": "always", "prev": "function", "next": "*" }
+    ],
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-empty-function": ["error"],
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "react/no-multi-comp": ["error"],
+    "react/react-in-jsx-scope": "off",
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": true,
+        "html": true
+      }
+    ],
+    "import/no-default-export": "error",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/__tests__/**", "jest.setup.ts"],
+        "optionalDependencies": false
+      }
+    ],
+    "react-refresh/only-export-components": ["error", { "allowConstantExport": true }],
+    "fp/no-let": "off",
+    "fp/no-arguments": "off",
+    "fp/no-loops": "off",
+    "fp/no-mutating-methods": "off",
+    "fp/no-mutation": "off",
+    "fp/no-nil": "off",
+    "fp/no-throw": "off",
+    "fp/no-unused-expression": "off",
+    "fp/no-class": "error",
+    "fp/no-delete": "error",
+    "fp/no-events": "error",
+    "fp/no-get-set": "error",
+    "fp/no-mutating-assign": "error",
+    "fp/no-proxy": "error",
+    "fp/no-rest-parameters": "error",
+    "fp/no-this": "error",
+    "fp/no-valueof-field": "error",
+    "fsecond/valid-event-listener": "error",
+    "fsecond/prefer-destructured-optionals": "error",
+    "unicorn/no-null": "off",
+    "sonar/no-dead-store": "warn",
+    "lodash/prefer-lodash-method": "off",
+    "lodash/prefer-constant": "off",
+    "prefer-arrow/prefer-arrow-functions": [
+      "error",
+      {
+        "disallowPrototype": true,
+        "singleReturnOnly": false,
+        "classPropertiesAllowed": false
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["src/app/**/{page,layout}.tsx"],
+      "rules": {
+        "import/no-default-export": "off",
+        "import/prefer-default-export": "error",
+        "import/no-named-as-default": "off",
+        "import/no-named-as-default-member": "off",
+        "react-refresh/only-export-components": "off"
+      }
+    },
+    {
+      "files": ["*.{js,jsx,ts,tsx}"],
+      "excludedFiles": ["*/**/*"],
+      "rules": {
+        "import/no-default-export": "off",
+        "import/prefer-default-export": "error"
+      }
+    },
+    {
+      "files": ["**/__tests__/**"],
+      "plugins": ["jest"],
+      "extends": ["plugin:jest/recommended"]
+    }
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": "tsconfig.json"
+      }
+    }
+  }
 }

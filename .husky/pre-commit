@@ -1,0 +1,45 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+
+echo 'Removing className extra white spaces...'
+
+bun run classname-remove-white-space || 
+(
+  echo 'Removing className extra spaces failed. Try again, run classname-remove-white-space script or remove spaces manually, add changes and try to commit again.'
+  false;
+)
+
+echo 'Formatting...'
+
+bun run format || 
+(
+  echo 'Prettyfying failed. Try again, run "prettier ." or format files manually, add changes and try to commit again.'
+  false;
+)
+
+echo 'Linting...'
+
+bun run check-lint ||
+(
+  echo 'ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
+  false; 
+)
+
+echo 'Checking types...'
+
+bun run check-types ||
+(
+  echo 'Found type errors. Make the required changes listed above, add changes and try to commit again.'
+  false;
+)
+
+echo 'Running tests...'
+
+bun run test ||
+(
+  echo 'Tests failed. Pass the tests, add changes and try to commit again.'
+  false;
+)
+
+echo 'Looks good, commiting now...'
