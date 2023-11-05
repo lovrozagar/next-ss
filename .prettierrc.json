@@ -1,28 +1,14 @@
 {
-  "printWidth": 100,
-  "tabWidth": 2,
-  "trailingComma": "all",
-  "proseWrap": "always",
   "arrowParens": "always",
-  "quoteProps": "consistent",
-  "htmlWhitespaceSensitivity": "strict",
-  "embeddedLanguageFormatting": "auto",
-  "useTabs": false,
-  "jsxSingleQuote": true,
-  "bracketSpacing": true,
-  "singleQuote": true,
   "bracketSameLine": false,
-  "semi": false,
-  "singleAttributePerLine": false,
+  "bracketSpacing": true,
+  "embeddedLanguageFormatting": "auto",
+  "htmlWhitespaceSensitivity": "strict",
+  "importOrder": ["^@.*\\.css$", "<THIRD_PARTY_MODULES>", "^@"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
-  "plugins": [
-    "@trivago/prettier-plugin-sort-imports",
-    "prettier-plugin-packagejson",
-    "prettier-plugin-tailwindcss",
-    "prettier-plugin-css-order"
-  ],
-  "importOrder": ["^@.*\\.css$", "<THIRD_PARTY_MODULES>", "^@"],
+  "jsonRecursiveSort": true,
+  "jsxSingleQuote": true,
   "overrides": [
     {
       "files": "*.json",
@@ -31,5 +17,21 @@
       }
     }
   ],
-  "tailwindConfig": "tailwind.config.ts"
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-packagejson",
+    "prettier-plugin-tailwindcss",
+    "prettier-plugin-css-order",
+    "prettier-plugin-sort-json"
+  ],
+  "printWidth": 100,
+  "proseWrap": "always",
+  "quoteProps": "consistent",
+  "semi": false,
+  "singleAttributePerLine": false,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "tailwindConfig": "tailwind.config.ts",
+  "trailingComma": "all",
+  "useTabs": false
 }

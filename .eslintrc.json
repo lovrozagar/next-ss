@@ -1,15 +1,4 @@
 {
-  "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "react",
-    "react-hooks",
-    "import",
-    "react-refresh",
-    "fp",
-    "fsecond",
-    "prefer-arrow"
-  ],
   "extends": [
     "eslint:recommended",
     "plugin:@next/next/recommended",
@@ -23,20 +12,96 @@
     "plugin:react-server-components/recommended",
     "plugin:tailwindcss/recommended"
   ],
+  "overrides": [
+    {
+      "files": ["src/app/**/{page,layout}.tsx"],
+      "rules": {
+        "import/no-default-export": "off",
+        "import/no-named-as-default": "off",
+        "import/no-named-as-default-member": "off",
+        "import/prefer-default-export": "error",
+        "react-refresh/only-export-components": "off"
+      }
+    },
+    {
+      "excludedFiles": ["*/**/*"],
+      "files": ["*.{js,jsx,ts,tsx}"],
+      "rules": {
+        "import/no-default-export": "off",
+        "import/prefer-default-export": "error"
+      }
+    },
+    {
+      "extends": ["plugin:jest/recommended"],
+      "files": ["**/__tests__/**"],
+      "plugins": ["jest"]
+    }
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks",
+    "import",
+    "react-refresh",
+    "fp",
+    "fsecond",
+    "prefer-arrow"
+  ],
   "rules": {
-    "semi": ["error", "never"],
-    "no-console": "warn",
-    "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
-    "func-style": ["error", "expression", { "allowArrowFunctions": true }],
-    "prefer-destructuring": "warn",
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "@typescript-eslint/no-empty-function": ["error"],
+    "@typescript-eslint/no-redeclare": [
+      "error",
+      { "builtinGlobals": false, "ignoreDeclarationMerge": true }
+    ],
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/prefer-as-const": "error",
     "array-callback-return": "error",
     "default-case": ["error", { "commentPattern": "^no default$" }],
     "dot-location": ["error", "property"],
     "eqeqeq": ["error", "smart"],
+    "fp/no-arguments": "off",
+    "fp/no-class": "error",
+    "fp/no-delete": "error",
+    "fp/no-events": "error",
+    "fp/no-get-set": "error",
+    "fp/no-let": "off",
+    "fp/no-loops": "off",
+    "fp/no-mutating-assign": "error",
+    "fp/no-mutating-methods": "off",
+    "fp/no-mutation": "off",
+    "fp/no-nil": "off",
+    "fp/no-proxy": "error",
+    "fp/no-rest-parameters": "error",
+    "fp/no-this": "error",
+    "fp/no-throw": "off",
+    "fp/no-unused-expression": "off",
+    "fp/no-valueof-field": "error",
+    "fsecond/prefer-destructured-optionals": "error",
+    "fsecond/valid-event-listener": "error",
+    "func-style": ["error", "expression", { "allowArrowFunctions": true }],
+    "getter-return": "error",
+    "import/no-default-export": "error",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/__tests__/**",
+          "jest.setup.ts",
+          "postcss.config.ts",
+          "tailwind.config.ts"
+        ],
+        "optionalDependencies": false
+      }
+    ],
+    "lodash/prefer-constant": "off",
+    "lodash/prefer-lodash-method": "off",
     "new-parens": "error",
     "no-array-constructor": "error",
     "no-caller": "error",
     "no-cond-assign": ["error", "except-parens"],
+    "no-console": "warn",
     "no-const-assign": "error",
     "no-control-regex": "error",
     "no-dupe-args": "error",
@@ -59,6 +124,18 @@
     "no-labels": ["error", { "allowLoop": true, "allowSwitch": false }],
     "no-lone-blocks": "error",
     "no-loop-func": "error",
+    "no-mixed-operators": [
+      "warn",
+      {
+        "allowSamePrecedence": false,
+        "groups": [
+          ["&", "|", "^", "~", "<<", ">>", ">>>"],
+          ["==", "!=", "===", "!==", ">", ">=", "<", "<="],
+          ["&&", "||"],
+          ["in", "instanceof"]
+        ]
+      }
+    ],
     "no-multi-str": "error",
     "no-native-reassign": "error",
     "no-negated-in-lhs": "error",
@@ -70,6 +147,13 @@
     "no-octal": "error",
     "no-octal-escape": "error",
     "no-regex-spaces": "error",
+    "no-restricted-syntax": [
+      "error",
+      {
+        "message": "Do not use inline exports. Declare before exporting.",
+        "selector": "ExportNamedDeclaration[declaration]"
+      }
+    ],
     "no-script-url": "error",
     "no-self-assign": "error",
     "no-self-compare": "error",
@@ -82,19 +166,15 @@
     "no-undef": "error",
     "no-unexpected-multiline": "error",
     "no-unreachable": "error",
+    "no-unused-expressions": [
+      "warn",
+      {
+        "allowShortCircuit": true,
+        "allowTaggedTemplates": true,
+        "allowTernary": true
+      }
+    ],
     "no-unused-labels": "error",
-    "no-useless-computed-key": "error",
-    "no-useless-concat": "error",
-    "no-useless-constructor": "error",
-    "no-useless-escape": "error",
-    "no-with": "error",
-    "no-whitespace-before-property": "error",
-    "require-yield": "error",
-    "strict": ["error", "never"],
-    "unicode-bom": ["error", "never"],
-    "use-isnan": "error",
-    "valid-typeof": "error",
-    "getter-return": "error",
     "no-unused-vars": [
       "warn",
       {
@@ -102,59 +182,42 @@
         "ignoreRestSiblings": true
       }
     ],
-    "no-unused-expressions": [
-      "warn",
-      {
-        "allowShortCircuit": true,
-        "allowTernary": true,
-        "allowTaggedTemplates": true
-      }
-    ],
-    "no-restricted-syntax": [
-      "error",
-      {
-        "selector": "ExportNamedDeclaration[declaration]",
-        "message": "Do not use inline exports. Declare before exporting."
-      }
-    ],
-    "padding-line-between-statements": [
-      "warn",
-      { "blankLine": "always", "prev": "*", "next": "export" },
-      { "blankLine": "always", "prev": "*", "next": "const" },
-      { "blankLine": "always", "prev": "const", "next": "*" },
-      { "blankLine": "always", "prev": "*", "next": "let" },
-      { "blankLine": "always", "prev": "let", "next": "*" },
-      { "blankLine": "always", "prev": "function", "next": "*" }
-    ],
-    "no-mixed-operators": [
-      "warn",
-      {
-        "groups": [
-          ["&", "|", "^", "~", "<<", ">>", ">>>"],
-          ["==", "!=", "===", "!==", ">", ">=", "<", "<="],
-          ["&&", "||"],
-          ["in", "instanceof"]
-        ],
-        "allowSamePrecedence": false
-      }
-    ],
+    "no-useless-computed-key": "error",
+    "no-useless-concat": "error",
+    "no-useless-constructor": "error",
+    "no-useless-escape": "error",
     "no-useless-rename": [
       "error",
       {
         "ignoreDestructuring": false,
-        "ignoreImport": false,
-        "ignoreExport": false
+        "ignoreExport": false,
+        "ignoreImport": false
       }
     ],
-    "@typescript-eslint/prefer-as-const": "error",
-    "@typescript-eslint/no-redeclare": [
-      "error",
-      { "builtinGlobals": false, "ignoreDeclarationMerge": true }
+    "no-whitespace-before-property": "error",
+    "no-with": "error",
+    "padding-line-between-statements": [
+      "warn",
+      { "blankLine": "always", "next": "export", "prev": "*" },
+      { "blankLine": "always", "next": "const", "prev": "*" },
+      { "blankLine": "always", "next": "*", "prev": "const" },
+      { "blankLine": "always", "next": "let", "prev": "*" },
+      { "blankLine": "always", "next": "*", "prev": "let" },
+      { "blankLine": "always", "next": "*", "prev": "function" }
     ],
-    "@typescript-eslint/no-unused-vars": "warn",
-    "@typescript-eslint/no-empty-function": ["error"],
-    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
-    "react/no-unused-prop-types": "warn",
+    "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
+    "prefer-arrow/prefer-arrow-functions": [
+      "error",
+      {
+        "classPropertiesAllowed": false,
+        "disallowPrototype": true,
+        "singleReturnOnly": false
+      }
+    ],
+    "prefer-destructuring": "warn",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react-refresh/only-export-components": ["error", { "allowConstantExport": true }],
     "react/forbid-foreign-prop-types": ["error", { "allowInPropTypes": true }],
     "react/jsx-no-comment-textnodes": "error",
     "react/jsx-no-duplicate-props": "error",
@@ -173,13 +236,11 @@
     "react/no-deprecated": "error",
     "react/no-direct-mutation-state": "error",
     "react/no-is-mounted": "error",
-    "react/no-typos": "error",
-    "react/require-render-return": "error",
-    "react/style-prop-object": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "react-hooks/rules-of-hooks": "error",
     "react/no-multi-comp": ["error"],
+    "react/no-typos": "error",
+    "react/no-unused-prop-types": "warn",
     "react/react-in-jsx-scope": "off",
+    "react/require-render-return": "error",
     "react/self-closing-comp": [
       "error",
       {
@@ -187,77 +248,16 @@
         "html": true
       }
     ],
-    "import/no-default-export": "error",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": [
-          "**/__tests__/**",
-          "jest.setup.ts",
-          "postcss.config.ts",
-          "tailwind.config.ts"
-        ],
-        "optionalDependencies": false
-      }
-    ],
-    "react-refresh/only-export-components": ["error", { "allowConstantExport": true }],
-    "fp/no-let": "off",
-    "fp/no-arguments": "off",
-    "fp/no-loops": "off",
-    "fp/no-mutating-methods": "off",
-    "fp/no-mutation": "off",
-    "fp/no-nil": "off",
-    "fp/no-throw": "off",
-    "fp/no-unused-expression": "off",
-    "fp/no-class": "error",
-    "fp/no-delete": "error",
-    "fp/no-events": "error",
-    "fp/no-get-set": "error",
-    "fp/no-mutating-assign": "error",
-    "fp/no-proxy": "error",
-    "fp/no-rest-parameters": "error",
-    "fp/no-this": "error",
-    "fp/no-valueof-field": "error",
-    "fsecond/valid-event-listener": "error",
-    "fsecond/prefer-destructured-optionals": "error",
-    "unicorn/no-null": "off",
+    "react/style-prop-object": "error",
+    "require-yield": "error",
+    "semi": ["error", "never"],
     "sonar/no-dead-store": "warn",
-    "lodash/prefer-lodash-method": "off",
-    "lodash/prefer-constant": "off",
-    "prefer-arrow/prefer-arrow-functions": [
-      "error",
-      {
-        "disallowPrototype": true,
-        "singleReturnOnly": false,
-        "classPropertiesAllowed": false
-      }
-    ]
+    "strict": ["error", "never"],
+    "unicode-bom": ["error", "never"],
+    "unicorn/no-null": "off",
+    "use-isnan": "error",
+    "valid-typeof": "error"
   },
-  "overrides": [
-    {
-      "files": ["src/app/**/{page,layout}.tsx"],
-      "rules": {
-        "import/no-default-export": "off",
-        "import/prefer-default-export": "error",
-        "import/no-named-as-default": "off",
-        "import/no-named-as-default-member": "off",
-        "react-refresh/only-export-components": "off"
-      }
-    },
-    {
-      "files": ["*.{js,jsx,ts,tsx}"],
-      "excludedFiles": ["*/**/*"],
-      "rules": {
-        "import/no-default-export": "off",
-        "import/prefer-default-export": "error"
-      }
-    },
-    {
-      "files": ["**/__tests__/**"],
-      "plugins": ["jest"],
-      "extends": ["plugin:jest/recommended"]
-    }
-  ],
   "settings": {
     "import/resolver": {
       "typescript": {

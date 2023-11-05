@@ -1,39 +1,40 @@
 {
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "checkJs": false,
+    "composite": false,
+    "esModuleInterop": true,
+    "exactOptionalPropertyTypes": false,
+    "experimentalDecorators": false,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "bundler",
-    "target": "es6",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "jsx": "preserve",
-    "composite": false,
-    "incremental": true,
-    "strict": true,
+    "noEmit": true,
     "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
-    "exactOptionalPropertyTypes": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "verbatimModuleSyntax": false,
-    "noEmit": true,
-    "skipLibCheck": true,
-    "allowJs": false,
-    "checkJs": false,
-    "experimentalDecorators": false,
-    "allowImportingTsExtensions": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es6",
+    "verbatimModuleSyntax": false
   },
+  "exclude": ["node_modules", "scripts"],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
@@ -42,11 +43,10 @@
     "postcss.config.ts",
     "tailwind.config.ts"
   ],
-  "exclude": ["node_modules", "scripts"],
   "ts-node": {
-    "esm": true,
     "compilerOptions": {
       "module": "nodenext"
-    }
+    },
+    "esm": true
   }
 }
