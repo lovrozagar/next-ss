@@ -8,7 +8,7 @@
     "check-format": "prettier --check .",
     "check-lint": "eslint ./src",
     "check-types": "tsc --pretty --noEmit",
-    "classname-remove-white-space": "node ./scripts/classname-remove-white-space.js",
+    "cn-rws": "node ./scripts/classname-remove-white-space.js",
     "coverage": "jest --coverage",
     "dev": "next dev",
     "format": "prettier --write .",

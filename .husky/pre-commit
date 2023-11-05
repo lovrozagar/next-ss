@@ -4,7 +4,7 @@
 
 echo 'Removing className extra white spaces...'
 
-bun run classname-remove-white-space || 
+bun run cn-rws || 
 (
   echo 'Removing className extra spaces failed. Try again, run classname-remove-white-space script or remove spaces manually, add changes and try to commit again.'
   false;

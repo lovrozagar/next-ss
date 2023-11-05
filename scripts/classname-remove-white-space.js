@@ -1,7 +1,7 @@
 import { readFile, readdir, stat, writeFile } from 'node:fs'
 import { extname, join } from 'node:path'
 
-var directoriesToIgnore = new Set([
+const directoriesToIgnore = new Set([
   'scripts',
   'node_modules',
   'public',
@@ -14,13 +14,13 @@ var directoriesToIgnore = new Set([
   '.babel',
 ])
 
-var acceptedFileExtensions = new Set(['.js', '.jsx', '.ts', '.tsx'])
+const acceptedFileExtensions = new Set(['.js', '.jsx', '.ts', '.tsx'])
 
-var defaultRootDirectory = './'
+const defaultRootDirectory = './'
 
 function removeExtraWhitespace(content) {
   return content.replaceAll(/className\s*=\s*(["'])([^"']+)\1/g, (_, quoteType, classNames) => {
-    var compactedClassNames = classNames.replaceAll(/\s+/g, ' ').trim()
+    const compactedClassNames = classNames.replaceAll(/\s+/g, ' ').trim()
     return 'className=' + quoteType + compactedClassNames + quoteType
   })
 }
@@ -35,8 +35,8 @@ function processDirectory(directoryPath) {
       console.error('Error reading directory:', directoryPath, error)
       return
     }
-    var _loop_1 = function (file) {
-      var filePath = join(directoryPath, file)
+    const _loop_1 = function (file) {
+      const filePath = join(directoryPath, file)
       stat(filePath, (error_, stats) => {
         if (error_) {
           console.error('Error getting file stats:', filePath, error_)
@@ -52,7 +52,7 @@ function processDirectory(directoryPath) {
               console.error('Error reading file:', filePath, error__)
               return
             }
-            var modifiedContent = removeExtraWhitespace(data)
+            const modifiedContent = removeExtraWhitespace(data)
             if (data === modifiedContent) {
               console.log('No changes needed: ' + filePath)
             } else {
@@ -68,13 +68,13 @@ function processDirectory(directoryPath) {
         }
       })
     }
-    for (var _index = 0, files_1 = files; _index < files_1.length; _index++) {
-      var file = files_1[_index]
+    for (let _index = 0, files_1 = files; _index < files_1.length; _index++) {
+      const file = files_1[_index]
       _loop_1(file)
     }
   })
 }
 
-var rootDirectory = process.argv[2] || defaultRootDirectory
+const rootDirectory = process.argv[2] || defaultRootDirectory
 
 processDirectory(rootDirectory)
