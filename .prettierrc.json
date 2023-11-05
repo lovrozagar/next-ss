@@ -9,7 +9,6 @@
   "embeddedLanguageFormatting": "auto",
   "useTabs": false,
   "jsxSingleQuote": true,
-  "editorconfig": true,
   "bracketSpacing": true,
   "singleQuote": true,
   "bracketSameLine": false,
