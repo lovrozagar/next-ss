@@ -3,6 +3,7 @@
   "plugins": [
     "@typescript-eslint",
     "react",
+    "react-hooks",
     "import",
     "react-refresh",
     "fp",
@@ -10,7 +11,7 @@
     "prefer-arrow"
   ],
   "extends": [
-    "next/core-web-vitals",
+    "plugin:@next/next/recommended",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
@@ -18,7 +19,8 @@
     "plugin:react-hooks/recommended",
     "plugin:unicorn/recommended",
     "plugin:sonar/recommended",
-    "plugin:lodash/recommended"
+    "plugin:lodash/recommended",
+    "plugin:react-server-components/recommended"
   ],
   "rules": {
     "semi": ["error", "never"],
@@ -26,8 +28,82 @@
     "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
     "func-style": ["error", "expression", { "allowArrowFunctions": true }],
     "prefer-destructuring": "warn",
+    "array-callback-return": "error",
+    "default-case": ["error", { "commentPattern": "^no default$" }],
+    "dot-location": ["error", "property"],
+    "eqeqeq": ["error", "smart"],
+    "new-parens": "error",
+    "no-array-constructor": "error",
+    "no-caller": "error",
+    "no-cond-assign": ["error", "except-parens"],
+    "no-const-assign": "error",
+    "no-control-regex": "error",
+    "no-dupe-args": "error",
+    "no-dupe-class-members": "error",
+    "no-dupe-keys": "error",
+    "no-duplicate-case": "error",
+    "no-empty-character-class": "error",
+    "no-empty-pattern": "error",
+    "no-eval": "error",
+    "no-ex-assign": "error",
+    "no-extend-native": "error",
+    "no-extra-bind": "error",
+    "no-extra-label": "error",
+    "no-fallthrough": "error",
+    "no-func-assign": "error",
+    "no-implied-eval": "error",
+    "no-invalid-regexp": "error",
+    "no-iterator": "error",
+    "no-label-var": "error",
+    "no-labels": ["error", { "allowLoop": true, "allowSwitch": false }],
+    "no-lone-blocks": "error",
+    "no-loop-func": "error",
+    "no-multi-str": "error",
+    "no-native-reassign": "error",
+    "no-negated-in-lhs": "error",
+    "no-new-func": "error",
+    "no-new-object": "error",
+    "no-new-symbol": "error",
+    "no-new-wrappers": "error",
+    "no-obj-calls": "error",
+    "no-octal": "error",
+    "no-octal-escape": "error",
+    "no-regex-spaces": "error",
+    "no-script-url": "error",
+    "no-self-assign": "error",
+    "no-self-compare": "error",
+    "no-sequences": "error",
+    "no-shadow-restricted-names": "error",
+    "no-sparse-arrays": "error",
+    "no-template-curly-in-string": "error",
+    "no-this-before-super": "error",
+    "no-throw-literal": "error",
+    "no-undef": "error",
+    "no-unexpected-multiline": "error",
+    "no-unreachable": "error",
+    "no-unused-labels": "error",
+    "no-useless-computed-key": "error",
+    "no-useless-concat": "error",
+    "no-useless-constructor": "error",
+    "no-useless-escape": "error",
+    "no-with": "error",
+    "no-whitespace-before-property": "error",
+    "require-yield": "error",
+    "rest-spread-spacing": ["error", "never"],
+    "strict": ["error", "never"],
+    "unicode-bom": ["error", "never"],
+    "use-isnan": "error",
+    "valid-typeof": "error",
+    "getter-return": "error",
+    "no-unused-vars": [
+      "warn",
+      {
+        "args": "none",
+        "ignoreRestSiblings": true
+      }
+    ],
     "no-unused-expressions": [
-      "error",
+      "warn",
       {
         "allowShortCircuit": true,
         "allowTernary": true,
@@ -50,9 +126,57 @@
       { "blankLine": "always", "prev": "let", "next": "*" },
       { "blankLine": "always", "prev": "function", "next": "*" }
     ],
+    "no-mixed-operators": [
+      "warn",
+      {
+        "groups": [
+          ["&", "|", "^", "~", "<<", ">>", ">>>"],
+          ["==", "!=", "===", "!==", ">", ">=", "<", "<="],
+          ["&&", "||"],
+          ["in", "instanceof"]
+        ],
+        "allowSamePrecedence": false
+      }
+    ],
+    "no-useless-rename": [
+      "error",
+      {
+        "ignoreDestructuring": false,
+        "ignoreImport": false,
+        "ignoreExport": false
+      }
+    ],
+    "@typescript-eslint/prefer-as-const": "error",
+    "@typescript-eslint/no-redeclare": [
+      "error",
+      { "builtinGlobals": false, "ignoreDeclarationMerge": true }
+    ],
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/no-empty-function": ["error"],
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "react/forbid-foreign-prop-types": ["error", { "allowInPropTypes": true }],
+    "react/jsx-no-comment-textnodes": "error",
+    "react/jsx-no-duplicate-props": "error",
+    "react/jsx-no-target-blank": "error",
+    "react/jsx-no-undef": "error",
+    "react/jsx-pascal-case": [
+      "error",
+      {
+        "allowAllCaps": true,
+        "ignore": []
+      }
+    ],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/no-danger-with-children": "error",
+    "react/no-deprecated": "error",
+    "react/no-direct-mutation-state": "error",
+    "react/no-is-mounted": "error",
+    "react/no-typos": "error",
+    "react/require-render-return": "error",
+    "react/style-prop-object": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
     "react/no-multi-comp": ["error"],
     "react/react-in-jsx-scope": "off",
     "react/self-closing-comp": [
