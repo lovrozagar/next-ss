@@ -2,7 +2,6 @@
   "printWidth": 100,
   "tabWidth": 2,
   "trailingComma": "all",
-  "endOfLine": "auto",
   "proseWrap": "always",
   "arrowParens": "always",
   "quoteProps": "consistent",

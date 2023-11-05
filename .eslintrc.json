@@ -11,8 +11,8 @@
     "prefer-arrow"
   ],
   "extends": [
-    "plugin:@next/next/recommended",
     "eslint:recommended",
+    "plugin:@next/next/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
@@ -20,7 +20,8 @@
     "plugin:unicorn/recommended",
     "plugin:sonar/recommended",
     "plugin:lodash/recommended",
-    "plugin:react-server-components/recommended"
+    "plugin:react-server-components/recommended",
+    "plugin:tailwindcss/recommended"
   ],
   "rules": {
     "semi": ["error", "never"],
@@ -89,7 +90,6 @@
     "no-with": "error",
     "no-whitespace-before-property": "error",
     "require-yield": "error",
-    "rest-spread-spacing": ["error", "never"],
     "strict": ["error", "never"],
     "unicode-bom": ["error", "never"],
     "use-isnan": "error",
@@ -154,6 +154,7 @@
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/no-empty-function": ["error"],
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "react/no-unused-prop-types": "warn",
     "react/forbid-foreign-prop-types": ["error", { "allowInPropTypes": true }],
     "react/jsx-no-comment-textnodes": "error",
     "react/jsx-no-duplicate-props": "error",
@@ -190,7 +191,12 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["**/__tests__/**", "jest.setup.ts"],
+        "devDependencies": [
+          "**/__tests__/**",
+          "jest.setup.ts",
+          "postcss.config.ts",
+          "tailwind.config.ts"
+        ],
         "optionalDependencies": false
       }
     ],
